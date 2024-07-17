@@ -1,5 +1,3 @@
--- Assessment 2
-
 module Main where 
 
 import Base
