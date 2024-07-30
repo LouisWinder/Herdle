@@ -3,7 +3,6 @@
 
 module Base where
 
--- Following imports needed for the `getChar'` fix
 import Data.Char
 import Foreign.C.Types
 
@@ -32,15 +31,11 @@ prompt Start = "Guess [any] or quit [q]? "
 prompt Guess = "Ok. Enter your guess:    "
 prompt Quit  = "Bye!"
 
------------------------------------------------------------
--- No need to read past here ------------------------------
------------------------------------------------------------
-
 -- Multi-platform version of `getChar` which has a fix for a GHC bug with Windows cmd/Powershell
 getChar' :: IO Char
 getChar' = do
 #ifdef mingw32_HOST_OS
-      -- Windows has to do things...
+      -- Windows
       c <- c_getch
       let c' = chr . fromEnum $ c
       putChar c'
